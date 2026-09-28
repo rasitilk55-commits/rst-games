@@ -1,0 +1,22 @@
+{
+  "name": "rst-games",
+  "private": true,
+  "version": "0.1.0",
+  "description": "RST oyun serisi: ortak altyapı (RST Kit) ve tek dokunuşluk fizik oyunları",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w apps/$npm_config_game",
+    "build": "npm run build -w apps/$npm_config_game",
+    "new-game": "node tools/new-game.mjs",
+    "web-export": "node tools/web-export.mjs",
+    "native": "node tools/configure-native.mjs",
+    "test": "node tools/test/run-all.mjs",
+    "playstore-check": "node tools/playstore-check.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

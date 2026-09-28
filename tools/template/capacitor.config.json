@@ -1,0 +1,8 @@
+{
+  "appId": "__APPID__",
+  "appName": "__TITLE_TR__",
+  "webDir": "dist",
+  "backgroundColor": "__COLOR__",
+  "ios": { "contentInset": "never" },
+  "android": { "backgroundColor": "__COLOR__" }
+}

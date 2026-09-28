@@ -1,0 +1,76 @@
+# iOS sürümü: Mac'e gerek kalmadan Codemagic bulut Mac'lerinde derlenir ve TestFlight'a yüklenir.
+# Codemagic'te: Teams > Integrations > App Store Connect API anahtarını "RST_ASC" adıyla ekle.
+# Her oyun için bir iş akışı var; yeni oyun eklerken bir bloğu kopyala, GAME ve bundle kimliğini değiştir.
+definitions:
+  ios_steps: &ios_steps
+    - name: Paketleri kur
+      script: npm install
+    - name: Oyunu derle
+      script: cd apps/$GAME && npm run build
+    - name: iOS projesini oluştur
+      script: |
+        cd apps/$GAME
+        npx cap add ios
+        node ../../tools/configure-native.mjs $GAME ios
+        COLOR=$(node -p "require('./rst.native.json').themeColor")
+        npx @capacitor/assets generate --ios --iconBackgroundColor "$COLOR" --splashBackgroundColor "$COLOR"
+        npx cap sync ios
+    - name: İmzalama profillerini uygula
+      script: xcode-project use-profiles
+    - name: Sürüm numarası
+      script: |
+        cd apps/$GAME/ios/App
+        agvtool new-version -all $((BUILD_NUMBER + 1))
+    - name: IPA üret
+      script: |
+        cd apps/$GAME/ios/App
+        if [ -d App.xcworkspace ]; then
+          xcode-project build-ipa --workspace App.xcworkspace --scheme App
+        else
+          xcode-project build-ipa --project App.xcodeproj --scheme App
+        fi
+  ios_publish: &ios_publish
+    app_store_connect:
+      auth: integration
+      submit_to_testflight: true
+
+workflows:
+  kelebek-sarkac-ios:
+    name: Kelebek Sarkaç (iOS)
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    integrations:
+      app_store_connect: RST_ASC
+    environment:
+      node: 22
+      xcode: latest
+      cocoapods: default
+      vars:
+        GAME: kelebek-sarkac
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.rstgames.kelebeksarkac
+    scripts: *ios_steps
+    artifacts:
+      - apps/*/ios/App/build/ios/ipa/*.ipa
+    publishing: *ios_publish
+
+  olay-ufku-ios:
+    name: Olay Ufku (iOS)
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    integrations:
+      app_store_connect: RST_ASC
+    environment:
+      node: 22
+      xcode: latest
+      cocoapods: default
+      vars:
+        GAME: olay-ufku
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.rstgames.olayufku
+    scripts: *ios_steps
+    artifacts:
+      - apps/*/ios/App/build/ios/ipa/*.ipa
+    publishing: *ios_publish

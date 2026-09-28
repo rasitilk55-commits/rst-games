@@ -1,0 +1,42 @@
+{
+  "_aciklama": "Yayın öncesi TEK doldurulacak dosya. Doldurduktan sonra: node tools/apply-release.mjs  (CI bunu kendisi de çalıştırır). Boş bırakılan reklam kimlikleri Google test kimliklerine düşer; boş RevenueCat anahtarı satın alma arayüzünü gizler.",
+  "gelistirici": {
+    "ad": "RST Games",
+    "eposta": "",
+    "web": ""
+  },
+  "gizlilikAdresi": "https://GITHUB-KULLANICI-ADIN.github.io/rst-games/gizlilik/{oyun}.html",
+  "kosullarAdresi": "",
+  "oyunlar": {
+    "olay-ufku": {
+      "surum": "1.0.0",
+      "admob": {
+        "androidUygulamaKimligi": "",
+        "androidOdulluReklam": "",
+        "androidGecisReklami": "",
+        "iosUygulamaKimligi": "",
+        "iosOdulluReklam": "",
+        "iosGecisReklami": ""
+      },
+      "revenuecat": {
+        "android": "",
+        "ios": ""
+      }
+    },
+    "kelebek-sarkac": {
+      "surum": "1.0.0",
+      "admob": {
+        "androidUygulamaKimligi": "",
+        "androidOdulluReklam": "",
+        "androidGecisReklami": "",
+        "iosUygulamaKimligi": "",
+        "iosOdulluReklam": "",
+        "iosGecisReklami": ""
+      },
+      "revenuecat": {
+        "android": "",
+        "ios": ""
+      }
+    }
+  }
+}

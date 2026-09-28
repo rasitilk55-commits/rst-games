@@ -1,0 +1,47 @@
+{
+  "packageName": "com.rstgames.kelebeksarkac",
+  "defaultLanguage": "tr-TR",
+  "category": "Oyun > Gündelik (Casual)",
+  "tags": [
+    "Gündelik",
+    "Tek dokunuş",
+    "Fizik",
+    "Tek oyunculu",
+    "Refleks"
+  ],
+  "contactEmail": "(yayin-ayarlari.json > gelistirici.eposta)",
+  "listings": {
+    "tr-TR": {
+      "title": "Kelebek Sarkaç",
+      "shortDescription": "Kaotik sarkaçtan kelebeği doğru anda bırak ve çiçeğe kondur. Tek dokunuş!",
+      "fullDescription": "Kelebek, çılgınca dönen bir çift sarkacın ucunda duruyor. Tek görevin var: doğru anda dokun, kelebek uçsun ve çiçeğe konsun.\n\nKolay mı görünüyor? Sarkaç kaotik. Saniyenin küçük bir kesri, kelebeğin çiçeğe mi yoksa çimenlere mi düşeceğini belirliyor. Iskaladığında oyun sana tam olarak ne kadar erken ya da geç kaldığını ve kelebeğin konacağı yolu gösteriyor. \"Bir kez daha\" demeden duramayacaksın.\n\n★ ÖZELLİKLER\n• Tek dokunuşla oynanır\n• Her seviye her denemede aynı şekilde sallanır: ritmi öğren, ustalaş\n• Her seviyenin yakalanabilir bir anı olduğu bilgisayarla doğrulanır\n• Rüzgâr, sallanan çiçekler ve dikenli dallarla giderek zorlaşan seviyeler\n• Günlük sarkaç: herkes aynı seviyede yarışır, serini koru, sonucunu paylaş\n• Yavaş Çekim ve Geniş Çiçek güçleri\n• Altınla açılan renkli kanatlar\n• 7 günlük hediyeler, günlük görevler, ücretsiz şans çarkı ve Altın Yol sezon ödülleri\n• İnternetsiz oynanabilir, Türkçe ve İngilizce\n\nOyun ücretsizdir; reklam ve isteğe bağlı uygulama içi satın almalar içerir (altın paketleri, Altın Yol sezon kartı, reklamsız paket ve VIP abonelik). Abonelikler iptal edilmedikçe otomatik yenilenir; Google Play > Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin."
+    },
+    "en-US": {
+      "title": "Butterfly Pendulum",
+      "shortDescription": "Release the butterfly from a chaotic pendulum at the perfect moment. One tap!",
+      "fullDescription": "A butterfly rides the tip of a wildly spinning double pendulum. You have one job: tap at the right moment so it flies off and lands on the flower.\n\nSounds easy? The pendulum is chaotic. A fraction of a second decides whether the butterfly lands on the petals or in the grass. When you miss, the game shows exactly how early or late you were and the path that would have landed. You will not stop at \"one more try\".\n\n★ FEATURES\n• One-tap gameplay\n• Every level swings the same way on every try: learn the rhythm, master it\n• Every level is computer-checked to have a catchable moment\n• Wind, swaying flowers and thorny branches make each level harder\n• Daily pendulum: everyone plays the same level, keep your streak, share your result\n• Slow Motion and Big Flower boosters\n• Colorful wings to unlock with coins\n• 7-day gifts, daily quests, a free lucky wheel and Golden Road season rewards\n• Play offline, in English and Turkish\n\nThe game is free to play and contains ads and optional in-app purchases (coin packs, the Golden Road season pass, a no-ads pack and a VIP subscription). Subscriptions renew automatically unless cancelled; you can cancel any time in Google Play > Payments & subscriptions."
+    }
+  },
+  "screenshotCaptions": {
+    "tr-TR": [
+      "Kaotik sarkacı çöz",
+      "Iskalarsan yolu gösterir",
+      "Doğru anda bırak",
+      "Rüzgâr ve dikenler",
+      "Seviye seviye ustalaş",
+      "Renkli kanatlar aç"
+    ],
+    "en-US": [
+      "Master the chaotic pendulum",
+      "Missed? See the perfect path",
+      "Release at the perfect moment",
+      "Wind and thorns",
+      "Level up your timing",
+      "Unlock colorful wings"
+    ]
+  },
+  "featureGraphic": {
+    "tr-TR": "Doğru anda bırak, çiçeğe kondur",
+    "en-US": "Release at the perfect moment"
+  }
+}

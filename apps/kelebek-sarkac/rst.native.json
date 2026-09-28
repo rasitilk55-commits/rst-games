@@ -1,0 +1,12 @@
+{
+  "admobAppId": {
+    "android": "ca-app-pub-3940256099942544~3347511713",
+    "ios": "ca-app-pub-3940256099942544~1458002511"
+  },
+  "trackingText": {
+    "tr": "Size daha alakalı reklamlar göstermek ve oyunu ücretsiz tutmak için kullanılır.",
+    "en": "Used to show you more relevant ads and keep the game free."
+  },
+  "portrait": true,
+  "themeColor": "#FFE3D3"
+}

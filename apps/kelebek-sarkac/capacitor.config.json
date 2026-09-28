@@ -1,0 +1,8 @@
+{
+  "appId": "com.rstgames.kelebeksarkac",
+  "appName": "Kelebek Sarkaç",
+  "webDir": "dist",
+  "backgroundColor": "#FFE3D3",
+  "ios": { "contentInset": "never" },
+  "android": { "backgroundColor": "#FFE3D3" }
+}

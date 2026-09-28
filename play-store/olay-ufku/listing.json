@@ -1,0 +1,47 @@
+{
+  "packageName": "com.rstgames.olayufku",
+  "defaultLanguage": "tr-TR",
+  "category": "Oyun > Bulmaca (Puzzle)",
+  "tags": [
+    "Bulmaca",
+    "Fizik",
+    "Uzay",
+    "Tek oyunculu",
+    "Gündelik"
+  ],
+  "contactEmail": "(yayin-ayarlari.json > gelistirici.eposta)",
+  "listings": {
+    "tr-TR": {
+      "title": "Olay Ufku: Kara Delik",
+      "shortDescription": "Kuyruklu yıldızı kara deliklerin etrafından kıvırıp portala ulaştır.",
+      "fullDescription": "Kara delikler ışığı bile büker. Şimdi sıra senin kuyruklu yıldızında.\n\nParmağınla geri çek, nişan al ve fırlat. Kütleçekimi yolunu kıvırır: doğru açıyı bulursan kuyruklu yıldızın kara deliklerin etrafından dolanarak portala süzülür. Fazla yaklaşırsan olay ufkuna düşer ve kaybolursun.\n\nArka plandaki her yıldız gerçek zamanlı olarak bükülür. Kara deliklerin çevresinde Einstein halkaları, dönen yığılma diskleri ve ışıktan yapılmış portallar seni bekliyor.\n\n★ 100 SEVİYE, 6 GALAKSİ\nHer seviye bilgisayarla tek tek hesaplandı ve çözülebildiği doğrulandı. İmkânsız seviye yok; sadece doğru yörüngeyi bulman gerekiyor.\n• İlk Işık: kütleçekimini öğren\n• İkiz Yıldızlar: iki kara delik arasında sapan hareketi\n• Asteroit Kuşağı: dar geçitlerden süzül\n• Beyaz Delikler: seni iten ışık kaynakları\n• Solucan Delikleri: bir ağızdan gir, diğerinden çık\n• Derin Uzay: hepsi bir arada\n100. seviyeden sonra sonsuz mod başlar.\n\n★ ÖZELLİKLER\n• Tek parmakla oynanan, gerçek kütleçekimine dayanan fizik\n• Gerçek zamanlı kütleçekimsel mercekleme görselleri\n• Yıldız tozlarını topla, kusursuz yörüngeyi bul, 3 yıldız al\n• Günün galaksisi: herkes aynı seviyede, sonucunu paylaş, serini koru\n• 7 günlük hediyeler, günlük görevler, ücretsiz şans çarkı ve Altın Yol sezon ödülleri\n• Buz, Güneş, Süpernova, Pulsar ve daha fazla kuyruk görünümü\n• İnternetsiz oynanabilir, Türkçe ve İngilizce\n\nOyun ücretsizdir; reklam ve isteğe bağlı uygulama içi satın almalar içerir (altın paketleri, Altın Yol sezon kartı, reklamsız paket ve VIP abonelik). Abonelikler iptal edilmedikçe otomatik yenilenir; Google Play > Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin."
+    },
+    "en-US": {
+      "title": "Event Horizon: Black Hole",
+      "shortDescription": "Curve your comet around black holes and slip it into the portal.",
+      "fullDescription": "Black holes bend even light. Now it is your comet's turn.\n\nPull back with your finger, aim and launch. Gravity curves your path: find the right angle and your comet swings around the black holes and glides into the portal. Get too close and it falls past the event horizon.\n\nEvery star in the background bends in real time. Einstein rings, spinning accretion disks and portals made of light are waiting.\n\n★ 100 LEVELS, 6 GALAXIES\nEvery level was computed and verified to be solvable. No impossible levels, you just need to find the right orbit.\n• First Light: learn how gravity works\n• Twin Stars: slingshot between two black holes\n• Asteroid Belt: slip through narrow gaps\n• White Holes: sources of light that push you away\n• Wormholes: enter one mouth, exit the other\n• Deep Space: everything at once\nEndless mode begins after level 100.\n\n★ FEATURES\n• One-finger physics built on real gravity\n• Real-time gravitational lensing visuals\n• Collect stardust, find the perfect orbit, earn 3 stars\n• Galaxy of the day: everyone plays the same level, share your result, keep your streak\n• 7-day gifts, daily quests, a free lucky wheel and Golden Road season rewards\n• Ice, Solar, Supernova, Pulsar and more comet tails\n• Play offline, in English and Turkish\n\nThe game is free to play and contains ads and optional in-app purchases (coin packs, the Golden Road season pass, a no-ads pack and a VIP subscription). Subscriptions renew automatically unless cancelled; you can cancel any time in Google Play > Payments & subscriptions."
+    }
+  },
+  "screenshotCaptions": {
+    "tr-TR": [
+      "Kütleçekimiyle nişan al",
+      "Kara deliklerin etrafından kıvrıl",
+      "Portala ulaş, 3 yıldız topla",
+      "Beyaz delikler ve asteroitler",
+      "100 doğrulanmış seviye",
+      "Her gün yeni bir galaksi"
+    ],
+    "en-US": [
+      "Aim with gravity",
+      "Swing around black holes",
+      "Reach the portal, earn 3 stars",
+      "White holes and asteroids",
+      "100 verified levels",
+      "A new galaxy every day"
+    ]
+  },
+  "featureGraphic": {
+    "tr-TR": "Kara deliklerin etrafından kıvrıl",
+    "en-US": "Bend your path around black holes"
+  }
+}

@@ -1,0 +1,107 @@
+# Android sürümü üretir: Google Play'e yüklenecek AAB + telefona kurup denemek için APK.
+# GitHub > Actions > "Android (Google Play)" > Run workflow.
+# Gerekli gizli değişkenler (Settings > Secrets and variables > Actions):
+#   ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD
+#   PLAY_SERVICE_ACCOUNT_JSON (isteğe bağlı; yoksa AAB'yi Play Console'a elle yüklersin)
+# Ayrıntılı anlatım: docs/PLAY-STORE-YUKLEME.md
+name: Android (Google Play)
+
+on:
+  workflow_dispatch:
+    inputs:
+      game:
+        description: 'Oyun'
+        type: choice
+        options: [olay-ufku, kelebek-sarkac]
+        required: true
+      ads:
+        description: 'Reklamlar: test (deneme sürümleri) veya live (gerçek reklam, yalnızca yayın için)'
+        type: choice
+        options: [test, live]
+        default: test
+      track:
+        description: "Play'e otomatik yükleme kanalı (none = yalnızca dosya üret)"
+        type: choice
+        options: [none, internal, alpha, beta, production]
+        default: none
+      status:
+        description: 'Play sürüm durumu (uygulama henüz yayında değilse draft olmalı)'
+        type: choice
+        options: [draft, completed]
+        default: draft
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GAME: ${{ inputs.game }}
+      RST_LIVE_ADS: ${{ inputs.ads == 'live' && '1' || '0' }}
+      HAS_PLAY: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON != '' }}
+      HAS_KEY: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: İmza anahtarı var mı?
+        if: env.HAS_KEY != 'true'
+        run: |
+          echo "::error::ANDROID_KEYSTORE_BASE64 gizli değişkeni yok. docs/PLAY-STORE-YUKLEME.md > Adım 3'e bak."
+          exit 1
+      - name: Yayın ayarlarını uygula (yayin-ayarlari.json)
+        run: node tools/apply-release.mjs "$GAME"
+      - name: Paketleri kur
+        run: npm install
+      - name: Testler (birim, seviye doğrulama, mağaza kontrolü)
+        run: node tools/test/run-all.mjs --quick --game "$GAME" ${{ inputs.ads == 'live' && '--release' || '' }}
+      - name: Oyunu derle
+        working-directory: apps/${{ inputs.game }}
+        run: npm run build
+      - name: Android projesini oluştur
+        working-directory: apps/${{ inputs.game }}
+        run: |
+          npx cap add android
+          node ../../tools/configure-native.mjs "$GAME" android
+          COLOR=$(node -p "require('./rst.native.json').themeColor")
+          npx @capacitor/assets generate --android --iconBackgroundColor "$COLOR" --iconBackgroundColorDark "$COLOR" --splashBackgroundColor "$COLOR" --splashBackgroundColorDark "$COLOR"
+          npx cap sync android
+      - name: İmza anahtarını hazırla
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/release.keystore"
+      - name: AAB ve APK üret
+        working-directory: apps/${{ inputs.game }}/android
+        env:
+          RST_KEYSTORE: ${{ runner.temp }}/release.keystore
+          RST_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          RST_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          RST_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          RST_VERSION_CODE: ${{ github.run_number }}
+        run: ./gradlew --no-daemon bundleRelease assembleRelease
+      - name: Dosyaları adlandır
+        id: meta
+        working-directory: apps/${{ inputs.game }}
+        run: |
+          VER=$(node -p "require('./package.json').version")
+          echo "appId=$(node -p "require('./capacitor.config.json').appId")" >> "$GITHUB_OUTPUT"
+          mkdir -p ../../out
+          cp android/app/build/outputs/bundle/release/app-release.aab "../../out/$GAME-$VER-${{ github.run_number }}-${{ inputs.ads }}.aab"
+          cp android/app/build/outputs/apk/release/app-release.apk "../../out/$GAME-$VER-${{ github.run_number }}-${{ inputs.ads }}.apk"
+          ls -la ../../out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.game }}-${{ github.run_number }}-${{ inputs.ads }}
+          path: out/*
+      - name: Google Play'e yükle
+        if: env.HAS_PLAY == 'true' && inputs.track != 'none'
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: ${{ steps.meta.outputs.appId }}
+          releaseFiles: out/*.aab
+          track: ${{ inputs.track }}
+          status: ${{ inputs.status }}
+          whatsNewDirectory: play-store/${{ inputs.game }}/whatsnew

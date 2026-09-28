@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-web/
+apps/*/android/
+apps/*/ios/
+*.keystore
+*.jks
+.env
+imza-anahtari/
+out/

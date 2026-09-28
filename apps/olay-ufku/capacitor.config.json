@@ -1,0 +1,8 @@
+{
+  "appId": "com.rstgames.olayufku",
+  "appName": "Olay Ufku",
+  "webDir": "dist",
+  "backgroundColor": "#05060F",
+  "ios": { "contentInset": "never" },
+  "android": { "backgroundColor": "#05060F" }
+}
