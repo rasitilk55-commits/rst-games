@@ -5,7 +5,7 @@ Bu dosya `play-store/kelebek-sarkac/listing.json` dosyasından üretildi (node t
 - **Paket adı:** `com.rstgames.kelebeksarkac`
 - **Kategori:** Oyun > Gündelik (Casual)
 - **Etiketler (en fazla 5):** Gündelik, Tek dokunuş, Fizik, Tek oyunculu, Refleks
-- **Gizlilik politikası:** https://GITHUB-KULLANICI-ADIN.github.io/rst-games/gizlilik/kelebek-sarkac.html
+- **Gizlilik politikası:** https://rasitilk55-commits.github.io/rst-games/gizlilik/kelebek-sarkac.html
 
 ## Türkçe (tr-TR, varsayılan dil)
 

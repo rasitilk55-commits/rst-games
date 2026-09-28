@@ -5,7 +5,7 @@ Bu dosya `play-store/olay-ufku/listing.json` dosyasından üretildi (node tools/
 - **Paket adı:** `com.rstgames.olayufku`
 - **Kategori:** Oyun > Bulmaca (Puzzle)
 - **Etiketler (en fazla 5):** Bulmaca, Fizik, Uzay, Tek oyunculu, Gündelik
-- **Gizlilik politikası:** https://GITHUB-KULLANICI-ADIN.github.io/rst-games/gizlilik/olay-ufku.html
+- **Gizlilik politikası:** https://rasitilk55-commits.github.io/rst-games/gizlilik/olay-ufku.html
 
 ## Türkçe (tr-TR, varsayılan dil)
 

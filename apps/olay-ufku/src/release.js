@@ -10,7 +10,7 @@ export const release = {
   },
   "developer": {
     "ad": "RST Games",
-    "eposta": "",
+    "eposta": "rasitilk55@gmail.com",
     "web": ""
   }
 };

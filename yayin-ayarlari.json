@@ -2,7 +2,7 @@
   "_aciklama": "Yayın öncesi TEK doldurulacak dosya. Doldurduktan sonra: node tools/apply-release.mjs  (CI bunu kendisi de çalıştırır). Boş bırakılan reklam kimlikleri Google test kimliklerine düşer; boş RevenueCat anahtarı satın alma arayüzünü gizler.",
   "gelistirici": {
     "ad": "RST Games",
-    "eposta": "",
+    "eposta": "rasitilk55@gmail.com",
     "web": ""
   },
   "gizlilikAdresi": "https://rasitilk55-commits.github.io/rst-games/gizlilik/{oyun}.html",
