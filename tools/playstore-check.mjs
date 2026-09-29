@@ -74,10 +74,12 @@ for (const game of games) {
       for (const x of files) {
         const im = png(join(d, x));
         const lo = Math.min(im.w, im.h), hi = Math.max(im.w, im.h);
-        if (lo < 320 || hi > 3840 || hi > lo * 2 || im.size > 8e6) bad.push(`${x} ${im.w}x${im.h}`);
+        const maxSide = kind === 'tablet-10' ? 7680 : 3840, minSide = kind === 'tablet-10' ? 1080 : 320;
+        // Play Console: 16:9 veya 9:16 en-boy oranı zorunlu
+        if (lo < minSide || hi > maxSide || Math.abs(hi / lo - 16 / 9) > 0.01 || im.size > 8e6) bad.push(`${x} ${im.w}x${im.h}`);
         if (kind === 'phone' && lo < 1080) bad.push(`${x}: öne çıkma için kısa kenar ≥ 1080 önerilir`);
       }
-      rec(game, `${loc} ${kind}: 2–8 ekran görüntüsü, 320–3840 px, en-boy ≤ 2:1`, need ? 'hata' : 'uyarı', files.length >= (need ? 4 : 2) && files.length <= 8 && !bad.length, `${files.length} dosya ${bad.join(', ')}`);
+      rec(game, `${loc} ${kind}: 2–8 ekran görüntüsü, 9:16 oranı, boyut sınırları`, need ? 'hata' : 'uyarı', files.length >= (need ? 4 : 2) && files.length <= 8 && !bad.length, `${files.length} dosya ${bad.join(', ')}`);
     }
   }
 

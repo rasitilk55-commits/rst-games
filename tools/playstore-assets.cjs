@@ -4,8 +4,8 @@
 //   icon-512.png                        uygulama simgesi (512x512, 32 bit PNG)
 //   feature-graphic-<dil>.png           öne çıkan görsel (1024x500, alfa kanalsız)
 //   phone/<dil>/0N.png                  telefon ekran görüntüleri (1080x1920)
-//   tablet-7/<dil>/0N.png               7 inç tablet (1200x1920)
-//   tablet-10/<dil>/0N.png              10 inç tablet (1600x2560)
+//   tablet-7/<dil>/0N.png               7 inç tablet (1216x2160, 9:16)
+//   tablet-10/<dil>/0N.png              10 inç tablet (1620x2880, 9:16)
 // Önce: node tools/web-export.mjs <oyun> ve (cd dist-web && python3 -m http.server 8765)
 // Kullanım: node tools/playstore-assets.cjs [oyun] [--phone-only]
 const { chromium } = require('playwright');
@@ -17,11 +17,13 @@ const ROOT = path.join(__dirname, '..');
 const ARGS = ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'];
 const only = process.argv.slice(2).find((a) => !a.startsWith('--'));
 const PHONE_ONLY = process.argv.includes('--phone-only');
+const TABLETS_ONLY = process.argv.includes('--tablets-only');
 const DEVICES = [
   { dir: 'phone', w: 360, h: 640, scale: 3 },
-  { dir: 'tablet-7', w: 600, h: 960, scale: 2 },
-  { dir: 'tablet-10', w: 800, h: 1280, scale: 2 },
-].filter((d) => !PHONE_ONLY || d.dir === 'phone');
+  // Play Console tablet görüntülerini de 9:16 ister: 7 inç 1216x2160, 10 inç 1620x2880
+  { dir: 'tablet-7', w: 608, h: 1080, scale: 2 },
+  { dir: 'tablet-10', w: 810, h: 1440, scale: 2 },
+].filter((d) => (!PHONE_ONLY || d.dir === 'phone') && (!TABLETS_ONLY || d.dir !== 'phone'));
 const LANGS = { 'tr-TR': 'tr', 'en-US': 'en' };
 const STYLE = {
   'olay-ufku': { bg: 'radial-gradient(120% 80% at 50% 0%, #2A1C6B 0%, #0B0820 55%, #05060F 100%)', ink: '#F4F1FF', accent: '#8FB4FF', frame: '#1B1640' },
@@ -210,6 +212,7 @@ function featureHtml(st, title, tag, icon, img) {
         await fctx.close();
         console.log('hazır:', game, loc, dev.dir, `${W}x${H}`, raws.length);
       }
+      if (!featureSrc) continue; // yalnızca tablet üretiminde öne çıkan görsel değişmez
       // Öne çıkan görsel (1024x500, alfa yok → JPEG değil, opak PNG)
       const fctx = await browser.newContext({ viewport: { width: 1024, height: 500 }, deviceScaleFactor: 1 });
       const fp = await fctx.newPage();
@@ -218,6 +221,7 @@ function featureHtml(st, title, tag, icon, img) {
       await fp.screenshot({ path: path.join(out, `feature-graphic-${loc}.png`), omitBackground: false });
       await fctx.close();
     }
+    if (TABLETS_ONLY) continue;
     // 512 simge
     const ictx = await browser.newContext({ viewport: { width: 512, height: 512 } });
     const ip = await ictx.newPage();
